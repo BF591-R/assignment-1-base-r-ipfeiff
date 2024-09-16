@@ -168,7 +168,39 @@ summarize_rows <- function(x, fn, na.rm=TRUE) {
 #' 3 -0.09040182 1.027559 -0.02774705 -3.026888 2.353087      130              54      0
 #' 4  0.09518138 1.030461  0.11294781 -3.409049 2.544992       90              72      0
 summarize_matrix <- function(x, na.rm=FALSE) {
-    return(NULL)
+  #create list to store multiple types
+  #make all necessary functions: mean stdev median min max num_lt_0 num_btw_1_and_5 num_na
+  #perform all functions for each row
+  #add all results into list
+  summary <- list()
+  for (i in 1:nrow(x)) {
+    this_row <- x[i, ]
+    
+    #remove nas
+    num_na <- sum(is.na(row_data))
+    rm_na(this_row)
+    
+    find_mean <- mean(this_row)
+    find_sd <- sd(this_row)
+    find_median <- median(this_row)
+    find_min <- min(this_row)
+    find_max <- max(this_row)
+    num_lt_0 <- sum(this_row < 0)
+    num_btw_1_and_5 <- sum(this_row >= 1 & this_row <= 5)
+    
+    # Add the results for this row into the list
+    summary[[i]] <- data.frame(
+      mean = find_mean,
+      stdev = find_sd,
+      median = find_median,
+      min = find_min,
+      max = find_max,
+      num_lt_0 = num_lt_0,
+      num_btw_1_and_5 = num_btw_1_and_5,
+      num_na = num_na
+    )
+  }
+  return(do.call(rbind, results))
 }
 
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
