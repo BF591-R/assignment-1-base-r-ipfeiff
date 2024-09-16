@@ -84,7 +84,7 @@ rm_na <- function(x) {
 #' 
 row_medians <- function(x) {
 #create new vector where length = num rows
-#for loop for each row, order in terms of size
+#for loop for each row, order in terms of size - found out about median function in r lol
 #take the median value once sorted and add to new vector
 #return new vector
 median_vector <- vector(length = nrow(x))
@@ -116,8 +116,19 @@ for (i in 1:nrow(x)) {
 #' [1] 1 4 7
 #' summarize_rows(m, mean)
 #' [1] 2 5 8
-summarize_rows <- function(x, fn, na.rm=FALSE) {
-    return(NULL)
+summarize_rows <- function(x, fn, na.rm=TRUE) {
+  #remove nas from matrix
+  #loop through each row, use fn on each row
+  #return a vector! wahoo!
+  summarize_vector <- vector(length = nrow(x))
+  for (i in 1:nrow(x)) {
+    if (na.rm) {
+      summarize_vector[i] <- fn(x[i, ], na.rm = TRUE)
+    } else {
+      summarize_vector[i] <- fn(x[i, ])
+    }
+  }
+  return(summarize_vector)
 }
 
 #' Summarize matrix rows into data frame
