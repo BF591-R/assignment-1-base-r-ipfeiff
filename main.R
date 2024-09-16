@@ -172,12 +172,12 @@ summarize_matrix <- function(x, na.rm=FALSE) {
   #make all necessary functions: mean stdev median min max num_lt_0 num_btw_1_and_5 num_na
   #perform all functions for each row
   #add all results into list
-  summary <- list()
+  summary <- data.frame()
   for (i in 1:nrow(x)) {
     this_row <- x[i, ]
     
     #remove nas
-    num_na <- sum(is.na(row_data))
+    num_na <- sum(is.na(this_row))
     rm_na(this_row)
     
     find_mean <- mean(this_row)
