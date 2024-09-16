@@ -18,7 +18,8 @@
 #' less_than_zero(c(-1,0,1,2,3,4))
 #' [1] TRUE FALSE FALSE FALSE FALSE FALSE
 less_than_zero <- function(x) {
-    if(x<0) {
+#need to update for vectors  
+  if(x<0) {
       return(TRUE)
     } else {return(FALSE)
       }
@@ -47,7 +48,8 @@ less_than_zero <- function(x) {
 #' [2,]  TRUE FALSE FALSE
 #' [3,] FALSE FALSE FALSE
 is_between <- function(x, a, b) {
-    if(a < x < b) {
+#simple check to see if x is in between a and b. need to update for matrices/vectors
+   if(a < x < b) {
       return(TRUE)
     } else { 
       return(FALSE)
@@ -68,7 +70,14 @@ is_between <- function(x, a, b) {
 #' rm_na(x)
 #' [1] 1 2 3
 rm_na <- function(x) {
-    return(NULL)
+#make new vector, add all variables that are not NA to it, return new vector
+#check syntax; java
+   y <- x
+    for (z in x) {
+      if (z.isequalto(NA))
+        y.append(z) 
+      }
+    return(y)
 }
 
 #' Calculate the median of each row of a matrix
@@ -87,7 +96,16 @@ rm_na <- function(x) {
 #' [1] 1 4 7
 #' 
 row_medians <- function(x) {
-    return(NULL)
+#create new vector where length = num rows
+#for loop for each row, order in terms of size
+#take the median value once sorted and add to new vector
+#return new vector
+median_vector(nrow(x))
+for (i in 1:nrow(x)) {
+  row_sorted <- sort(mat[i, ])
+  median_vector[i] <- median(row_sorted)
+}
+  print(median_vector)
 }
 
 #' Evaluate each row of a matrix with a provided function
