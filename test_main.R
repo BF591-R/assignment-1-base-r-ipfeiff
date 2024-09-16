@@ -120,33 +120,33 @@ describe("summarize_matrix()", {
 })
 
 
-#  these tests are bonus - if you want to try the challenge, uncomment!
-# 
-# describe("Bonus tests! Make your code work when there are NAs!", {
-#   m <- matrix(1:9, nrow=3, byrow=T)
-#   m[2,1] <- NA
-#   
-#   it("returns correct mean values with na.rm=FALSE set", {
-#     expect_equal(summarize_rows(m, mean, na.rm=FALSE), 
-#                           c(2,NA,8))
-#   })
-#   it("returns correct mean values with na.rm=TRUE set", {
-#     expect_equal(summarize_rows(m, mean, na.rm=TRUE), 
-#                           c(2,5.5,8))
-#   })
-#   it("returns correct min values with na.rm=FALSE", {
-#     expect_equal(summarize_rows(m, min, na.rm=FALSE), 
-#                           c(1,NA,7))
-#   })
-#   it('returns correct min values with na.rm=TRUE', {
-#     expect_equal(summarize_rows(m, min, na.rm=TRUE),
-#                           c(1,5,7))
-#   })
-# })
-# 
+ #these tests are bonus - if you want to try the challenge, uncomment!
+
+describe("Bonus tests! Make your code work when there are NAs!", {
+  m <- matrix(1:9, nrow=3, byrow=T)
+  m[2,1] <- NA
+
+  it("returns correct mean values with na.rm=FALSE set", {
+    expect_equal(summarize_rows(m, mean, na.rm=FALSE),
+                          c(2,NA,8))
+  })
+  it("returns correct mean values with na.rm=TRUE set", {
+    expect_equal(summarize_rows(m, mean, na.rm=TRUE),
+                          c(2,5.5,8))
+  })
+  it("returns correct min values with na.rm=FALSE", {
+    expect_equal(summarize_rows(m, min, na.rm=FALSE),
+                          c(1,NA,7))
+  })
+  it('returns correct min values with na.rm=TRUE', {
+    expect_equal(summarize_rows(m, min, na.rm=TRUE),
+                          c(1,5,7))
+  })
+})
+
 # describe("summarize_matrix() works with na.rm=FALSE", {
 #   m_summary <- summarize_matrix(m, na.rm=FALSE)
-#   
+# 
 #   it("returns mean correctly", {
 #     expect_equal(m_summary$mean, c(2, NA, 8))
 #   })
@@ -175,7 +175,7 @@ describe("summarize_matrix()", {
 # 
 # describe("summarize_matrix() works with na.rm=TRUE", {
 #   m_summary <- summarize_matrix(m, na.rm=TRUE)
-#   
+# 
 #   it("returns mean correctly", {
 #     expect_equal(m_summary$mean, c(2, 5.5, 8))
 #   })

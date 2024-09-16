@@ -172,7 +172,7 @@ summarize_matrix <- function(x, na.rm=FALSE) {
   #make all necessary functions: mean stdev median min max num_lt_0 num_btw_1_and_5 num_na
   #perform all functions for each row
   #add all results into list
-  summary <- data.frame()
+  summary_list <- list(nrow(x))
   for (i in 1:nrow(x)) {
     this_row <- x[i, ]
     
@@ -186,10 +186,10 @@ summarize_matrix <- function(x, na.rm=FALSE) {
     find_min <- min(this_row)
     find_max <- max(this_row)
     num_lt_0 <- sum(this_row < 0)
-    num_btw_1_and_5 <- sum(this_row >= 1 & this_row <= 5)
+    num_btw_1_and_5 <- sum(is_between(this_row, 1, 5))
     
     # Add the results for this row into the list
-    summary[[i]] <- data.frame(
+    summary_list[[i]] <- data.frame(
       mean = find_mean,
       stdev = find_sd,
       median = find_median,
@@ -200,7 +200,9 @@ summarize_matrix <- function(x, na.rm=FALSE) {
       num_na = num_na
     )
   }
-  return(do.call(rbind, results))
+  summary_dataframe <- do.call(rbind, summary_list)
+  
+  return(summary_dataframe)
 }
 
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
