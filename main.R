@@ -89,7 +89,7 @@ row_medians <- function(x) {
 #return new vector
 median_vector <- vector(length = nrow(x))
 for (i in 1:nrow(x)) {
-  row_sorted <- sort(mat[i, ])
+  row_sorted <- sort(x[i, ])
   median_vector[i] <- median(row_sorted)
   }
   return(median_vector)
